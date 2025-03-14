@@ -49,3 +49,23 @@ temp_df.head()
 
 # %%
 temp_df.shape
+
+# %%
+temp_df["is_duplicate"] = new_df["is_duplicate"]
+
+# %%
+temp_df.head()
+
+# %%
+from sklearn.model_selection import train_test_split
+
+x_train, x_test, y_train, y_test = train_test_split(
+    temp_df.iloc[:, 0:-1].values,
+    temp_df.iloc[:, -1].values,
+    test_size=0.2,
+    random_state=2,
+)
+
+# %%
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
