@@ -69,3 +69,20 @@ x_train, x_test, y_train, y_test = train_test_split(
 # %%
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
+
+
+rf = RandomForestClassifier(n_estimators=100)
+rf.fit(x_train, y_train)
+y_pred = rf.predict(x_test)
+accuracy_score(y_test, y_pred)
+
+# %%
+from xgboost import XGBClassifier
+
+xgb = XGBClassifier(n_estimators=1000)
+xgb.fit(x_train, y_train)
+y_pred = xgb.predict(x_test)
+accuracy_score(y_test, y_pred)
+
+
+# %%
