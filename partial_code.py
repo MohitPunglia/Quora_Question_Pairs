@@ -50,3 +50,29 @@ new_df["q2_len"] = new_df["question2"].str.len()
 
 # %%
 new_df.head()
+
+# %%
+new_df["q1_num_words"] = new_df["question1"].apply(lambda x: len(x.split()))
+new_df["q2_num_words"] = new_df["question2"].apply(lambda x: len(x.split()))
+
+# %%
+new_df.head()
+
+
+# %%
+def common_words(row):
+    w1 = set(map(lambda word: word.lower().strip(), row["question1"].split()))
+    w2 = set(map(lambda word: word.lower().strip(), row["question2"].split()))
+    return len(w1 & w2)
+
+
+# %%
+new_df["common_words"] = new_df.apply(common_words, axis=1)
+new_df.head()
+
+
+# %%
+def total_words(row):
+    w1 = set(map(lambda word: word.lower().strip(), row["question1"].split()))
+    w2 = set(map(lambda word: word.lower().strip(), row["question2"].split()))
+    return len(w1) + len(w2)
