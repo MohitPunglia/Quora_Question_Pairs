@@ -76,3 +76,21 @@ def total_words(row):
     w1 = set(map(lambda word: word.lower().strip(), row["question1"].split()))
     w2 = set(map(lambda word: word.lower().strip(), row["question2"].split()))
     return len(w1) + len(w2)
+
+
+# %%
+new_df["total_words"] = new_df.apply(total_words, axis=1)
+new_df.head()
+
+# %%
+new_df["word_share"] = new_df["common_words"] / new_df["total_words"]
+new_df.head()
+
+# %%
+sns.displot(new_df["common_words"])
+plt.show()
+
+
+# %%
+ques_df = new_df[["question1", "question2"]]
+ques_df.head()
