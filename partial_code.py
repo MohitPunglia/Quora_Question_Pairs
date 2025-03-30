@@ -91,6 +91,3 @@ sns.displot(new_df["common_words"])
 plt.show()
 
 
-# %%
-ques_df = new_df[["question1", "question2"]]
-ques_df.head()
