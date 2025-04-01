@@ -119,3 +119,32 @@ temp_df.shape
 final_df = pd.concat([final_df, temp_df], axis=1)
 print(final_df.shape)
 final_df.head()
+
+
+# %%
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(
+    final_df.iloc[:, 1:].values,
+    final_df.iloc[:, 0].values,
+    test_size=0.2,
+    random_state=1,
+)
+
+
+# %%
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+rf = RandomForestClassifier()
+rf.fit(X_train, y_train)
+y_pred = rf.predict(X_test)
+accuracy_score(y_test, y_pred)
+
+# %%
+from xgboost import XGBClassifier
+
+xgb = XGBClassifier()
+xgb.fit(X_train, y_train)
+y_pred = xgb.predict(X_test)
+accuracy_score(y_test, y_pred)
